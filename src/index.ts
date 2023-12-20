@@ -29,3 +29,12 @@ type ProdFunc = (n:number,m:number) =>number;
 const func3 : ProdFunc = (n,m) =>{
     return n*m;
 }
+
+
+// array
+const arr1 : number[] = [212,43,2,41124];
+// or 
+const arr2 : Array<number> = [1312,31,3,1,1,3]; 
+
+
+///
