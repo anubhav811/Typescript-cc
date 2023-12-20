@@ -36,5 +36,5 @@ const arr1 : number[] = [212,43,2,41124];
 // or 
 const arr2 : Array<number> = [1312,31,3,1,1,3]; 
 
-
-///
+const arr3 : Array<string|number> = ["asd",2,"asd",344,232];
+// 
