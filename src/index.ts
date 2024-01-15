@@ -1,123 +1,76 @@
-// Type definitions
+class Shape{
+    constructor(private _x:number,private _y:number){}
+    public get x():number{
+        return this._x
+    }
 
-let a : number = 4
-let naam : string = "anubhav";
+    public set x(value:number) {
+        this._x  = value;
+    }
 
-console.log(naam)
+    public get y():number{
+        return this._y
+    }
+    
+    public set y(value:number) {
+        this._y  = value;
+    }
 
-// union type
-let surname : string | number
-surname = "Chachra"
-console.log(surname);
-surname = 4;
-console.log(surname)
-
-
-// functions
-const func = (m:number,n:number) : number =>{
-    return n*m;
-}
-console.log(func(3,2));
-
-const func2 = (m:number,n:number) : string =>{
-    return String(n*m);
-}
-console.log(func2(3,2));
-
-// type aliases 
-type ProdFunc = (n:number,m:number) =>number; 
-const func3 : ProdFunc = (n,m) =>{
-    return n*m;
-}
-
-
-// array
-const arr1 : number[] = [212,43,2,41124];
-// or 
-const arr2 : Array<number> = [1312,31,3,1,1,3]; 
-
-const arr3 : Array<string|number> = ["asd",2,"asd",344,232];
-// 
-
-// for each loop
-
-let sports : string[] = ["Cricket","Golf","Football"]
-sports.push("Baseball");
-for(let sport of sports){
-    console.log(sport);
-}
-
-
-// classes
-class Customer{
-    firstName : string;
-    lastName : string
-
-    constructor(firstName:string,lastName:string){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public getInfo():string{
+        return `x=${this._x} , y=${this._y}`;
     }
 }
 
-let myCustomer = new Customer("Krina","Chachra");
-console.log(myCustomer)
+class Circle extends Shape{
+   
+    constructor(x:number,y:number, private _radius : number){
+        super(x,y);
+    }
 
-type Obj  = {
-    height : number;
-    weight : number;
-    gender ?: boolean;  // ? makes the property optional or basically nullable
-};
+    public get radius():number{
+        return this._radius;
+    }   
+    public set radius(value:number){
+        this._radius= value;
+    }   
 
-// OR
-
-interface NewObj {
-    height : number;
-    weight : number;
-    gender ?: boolean;  // ? makes the property optional or basically nullable
+    public getInfo(): string {
+        return super.getInfo() + ` , radius=${this._radius}`;
+    }
 }
 
-interface NewNewObj extends NewObj{
-    age : number
-    func : (n:number,m:number) => void
-};
+class Rectangle extends Shape{
 
-const gg : NewNewObj =  {
-    height : 12,
-    weight : 232,
-    age : 2,
-    func:(n,m) => console.log(n+m)
-};
+    constructor(x:number,y:number,private _length :number,private _width : number){
+        super(x,y);
+    }
+    public set width(value : number) {
+        this._width = value;
+    }
 
-gg.func(21,12)
-
-const obj: Obj = {
-    height : 12,
-    weight : 34,
-    gender : true
+    public set length(value : number) {
+        this._length = value;
+    }
+    public get width() : number {
+        return this._width ;
+    }
+    public get length() : number {
+        return this._length;
+    }
+    
+    public getInfo(): string {
+        return super.getInfo() + `, length=${this._length} , width=${this._width}`;
+    }
 }
 
-const obj2: Obj = {
-    height : 133,
-    weight : 231,
-    gender : false
-}
+const myShape = new Shape(10,15);
+console.log(myShape.getInfo());
+const myCircle = new Circle(5,10,20);
+console.log(myCircle.getInfo());
+const myRectangle = new Rectangle(0,0,10,20);
+console.log(myRectangle.getInfo())
 
-
-/**
- * Functions
- */
-
-// type alias
-// type twoNumInput = (n:number,m:number,l?:number) =>number;  
-
-// // using the type alias
-// const fun :twoNumInput=(a,b,c)=>{
-//     if(typeof(c)==="undefined")
-//         return a*b;
-//     return a*b*c;
-// }
-// // calling
-// fun(2,3)
-
-
+const shapes : Shape[] = [];
+shapes.push(myShape,myCircle,myRectangle);
+console.log(shapes)
 
